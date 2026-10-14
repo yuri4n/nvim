@@ -6,7 +6,8 @@ key, and `Space ?` opens it.
 
 ## Install
 
-You need Neovim 0.12+, git, ripgrep, the tree-sitter CLI and a C compiler.
+You need Neovim 0.12+, git and ripgrep. With the tree-sitter CLI and a C
+compiler, it also builds parsers for more languages.
 
 ```sh
 git clone https://github.com/yuri4n/nvim ~/.config/nvim

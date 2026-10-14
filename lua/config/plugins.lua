@@ -96,13 +96,16 @@ require('blink.cmp').setup({
 })
 
 -- Tree-sitter parsers for the languages I use. Missing parsers compile in the
--- background; this needs the tree-sitter CLI and a C compiler.
-require('nvim-treesitter').install({
-  'bash', 'c', 'c_sharp', 'cpp', 'css', 'diff', 'dockerfile', 'eex', 'elixir', 'erlang',
-  'gitcommit', 'go', 'graphql', 'haskell', 'heex', 'html', 'javascript', 'json', 'lua',
-  'markdown', 'markdown_inline', 'nix', 'ocaml', 'python', 'regex', 'rust', 'scala', 'sql',
-  'toml', 'tsx', 'typescript', 'vim', 'vimdoc', 'vue', 'yaml',
-})
+-- background, which needs the tree-sitter CLI and a C compiler. Without the CLI,
+-- only the parsers that ship with Neovim are used.
+if vim.fn.executable('tree-sitter') == 1 then
+  require('nvim-treesitter').install({
+    'bash', 'c', 'c_sharp', 'cpp', 'css', 'diff', 'dockerfile', 'eex', 'elixir', 'erlang',
+    'gitcommit', 'go', 'graphql', 'haskell', 'heex', 'html', 'javascript', 'json', 'lua',
+    'markdown', 'markdown_inline', 'nix', 'ocaml', 'python', 'regex', 'rust', 'scala', 'sql',
+    'toml', 'tsx', 'typescript', 'vim', 'vimdoc', 'vue', 'yaml',
+  })
+end
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(ev)
